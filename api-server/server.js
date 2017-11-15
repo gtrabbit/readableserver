@@ -11,13 +11,12 @@ const comments = require('./comments')
 
 const app = express()
 
-app.use(express.static('public'))
 app.use(cors())
 
+app.use('/static/', express.static(path.join(__dirname, 'build/static')));
 
 app.get('/', (req, res) => {
-  app.use(express.static(__dirname + '/build'));
-  res.sendFile(path.join(__dirname + '/build/index.html'))
+  res.sendFile(path.join(__dirname, '/build/index.html'))
 })
 
 app.use((req, res, next) => {
